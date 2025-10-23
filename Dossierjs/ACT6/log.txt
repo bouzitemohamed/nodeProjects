@@ -1,6 +1,0 @@
-Requête reçue : /
-Requête reçue : /favicon.ico
-Requête reçue : /heloworld
-Requête reçue : /favicon.ico
-Requête reçue : /welcom
-Requête reçue : /favicon.ico
