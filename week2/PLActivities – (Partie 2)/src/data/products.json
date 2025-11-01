@@ -1,0 +1,149 @@
+[
+  {
+    "id": 1,
+    "name": "Smartphone Galaxy X20",
+    "price": 499.99,
+    "dateCreation": "2025-01-15",
+    "category": "Electronics"
+  },
+  {
+    "id": 2,
+    "name": "Wireless Headphones Pro",
+    "price": 149.99,
+    "dateCreation": "2025-02-03",
+    "category": "Accessories"
+  },
+  {
+    "id": 4,
+    "name": "Laptop UltraBook Z5",
+    "price": 1199.99,
+    "dateCreation": "2025-03-01",
+    "category": "Computers"
+  },
+  {
+    "id": 5,
+    "name": "Bluetooth Speaker BoomX",
+    "price": 89.99,
+    "dateCreation": "2025-02-10",
+    "category": "Audio"
+  },
+  {
+    "id": 6,
+    "name": "Smartwatch FitSense",
+    "price": 199.99,
+    "dateCreation": "2025-02-14",
+    "category": "Wearables"
+  },
+  {
+    "id": 7,
+    "name": "Gaming Mouse GX500",
+    "price": 59.99,
+    "dateCreation": "2025-01-25",
+    "category": "Gaming"
+  },
+  {
+    "id": 8,
+    "name": "Mechanical Keyboard MK100",
+    "price": 129.99,
+    "dateCreation": "2025-03-05",
+    "category": "Computers"
+  },
+  {
+    "id": 9,
+    "name": "External SSD 1TB",
+    "price": 149.5,
+    "dateCreation": "2025-03-08",
+    "category": "Storage"
+  },
+  {
+    "id": 10,
+    "name": "Smart Home Hub",
+    "price": 179.99,
+    "dateCreation": "2025-03-10",
+    "category": "Home Automation"
+  },
+  {
+    "id": 11,
+    "name": "Digital Camera ProShot",
+    "price": 699,
+    "dateCreation": "2025-02-20",
+    "category": "Photography"
+  },
+  {
+    "id": 12,
+    "name": "Drone SkyMaster",
+    "price": 999.99,
+    "dateCreation": "2025-01-30",
+    "category": "Drones"
+  },
+  {
+    "id": 13,
+    "name": "Wireless Charger Pad",
+    "price": 29.99,
+    "dateCreation": "2025-03-02",
+    "category": "Accessories"
+  },
+  {
+    "id": 14,
+    "name": "Smart Light Bulb RGB",
+    "price": 19.99,
+    "dateCreation": "2025-02-01",
+    "category": "Home Automation"
+  },
+  {
+    "id": 15,
+    "name": "Portable Power Bank 20000mAh",
+    "price": 39.99,
+    "dateCreation": "2025-02-18",
+    "category": "Accessories"
+  },
+  {
+    "id": 16,
+    "name": "Tablet AlphaTab 10\"",
+    "price": 299.99,
+    "dateCreation": "2025-03-11",
+    "category": "Electronics"
+  },
+  {
+    "id": 17,
+    "name": "VR Headset VisionX",
+    "price": 349.99,
+    "dateCreation": "2025-01-27",
+    "category": "Gaming"
+  },
+  {
+    "id": 18,
+    "name": "Smart Refrigerator CoolPro",
+    "price": 1299,
+    "dateCreation": "2025-02-24",
+    "category": "Home Appliances"
+  },
+  {
+    "id": 19,
+    "name": "Electric Scooter CityRide",
+    "price": 499,
+    "dateCreation": "2025-03-15",
+    "category": "Mobility"
+  },
+  {
+    "id": 20,
+    "name": "Wireless Security Camera",
+    "price": 159.99,
+    "dateCreation": "2025-03-20",
+    "category": "Home Security"
+  },
+  {
+    "id": 21,
+    "name": "Smartphone Galaxy A21",
+    "price": 2200,
+    "dateCreation": "2025-10-31T10:28:20.277Z",
+    "category": "Electronic"
+  },
+  {
+    "id": 22,
+    "name": "XboX Pro",
+    "price": 5000,
+    "dateCreation": "2025-10-31T10:44:38.800Z",
+    "category": "Gaming"
+  }
+]
