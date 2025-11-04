@@ -1,0 +1,211 @@
+[
+  {
+    "id": 1,
+    "brand": "Kia",
+    "model": "308",
+    "category": "sedan",
+    "plate": "6590-C-MA",
+    "pricePerDay": 79.69,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019220",
+    "updatedAt": "2025-11-04T10:07:33.019227"
+  },
+  {
+    "id": 2,
+    "brand": "Honda",
+    "model": "Tucson",
+    "category": "suv",
+    "plate": "6701-A-MA",
+    "pricePerDay": 68.28,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019235",
+    "updatedAt": "2025-11-04T10:07:33.019236"
+  },
+  {
+    "id": 3,
+    "brand": "Ford",
+    "model": "Altima",
+    "category": "eco",
+    "plate": "6242-C-MA",
+    "pricePerDay": 100.09,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019242",
+    "updatedAt": "2025-11-04T10:07:33.019243"
+  },
+  {
+    "id": 4,
+    "brand": "Honda",
+    "model": "Corolla",
+    "category": "van",
+    "plate": "2432-E-MA",
+    "pricePerDay": 49.77,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019247",
+    "updatedAt": "2025-11-04T10:07:33.019248"
+  },
+  {
+    "id": 6,
+    "brand": "Hyundai",
+    "model": "C-Class",
+    "category": "van",
+    "plate": "3317-C-MA",
+    "pricePerDay": 39.68,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019259",
+    "updatedAt": "2025-11-04T10:07:33.019260"
+  },
+  {
+    "id": 7,
+    "brand": "Mercedes",
+    "model": "Civic",
+    "category": "suv",
+    "plate": "3697-C-MA",
+    "pricePerDay": 81.65,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019265",
+    "updatedAt": "2025-11-04T10:07:33.019266"
+  },
+  {
+    "id": 8,
+    "brand": "Volkswagen",
+    "model": "308",
+    "category": "eco",
+    "plate": "7974-D-MA",
+    "pricePerDay": 60.89,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019277",
+    "updatedAt": "2025-11-04T10:07:33.019278"
+  },
+  {
+    "id": 9,
+    "brand": "Mercedes",
+    "model": "Corolla",
+    "category": "suv",
+    "plate": "4123-A-MA",
+    "pricePerDay": 48.48,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019284",
+    "updatedAt": "2025-11-04T10:07:33.019286"
+  },
+  {
+    "id": 10,
+    "brand": "Volkswagen",
+    "model": "Civic",
+    "category": "van",
+    "plate": "2851-E-MA",
+    "pricePerDay": 78.86,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019290",
+    "updatedAt": "2025-11-04T10:07:33.019291"
+  },
+  {
+    "id": 11,
+    "brand": "Peugeot",
+    "model": "Civic",
+    "category": "van",
+    "plate": "5205-C-MA",
+    "pricePerDay": 75.09,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019296",
+    "updatedAt": "2025-11-04T10:07:33.019297"
+  },
+  {
+    "id": 12,
+    "brand": "Mercedes",
+    "model": "308",
+    "category": "sedan",
+    "plate": "9366-B-MA",
+    "pricePerDay": 49.75,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019302",
+    "updatedAt": "2025-11-04T10:07:33.019303"
+  },
+  {
+    "id": 13,
+    "brand": "Kia",
+    "model": "Altima",
+    "category": "sedan",
+    "plate": "5067-D-MA",
+    "pricePerDay": 69.84,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019307",
+    "updatedAt": "2025-11-04T10:07:33.019308"
+  },
+  {
+    "id": 14,
+    "brand": "Honda",
+    "model": "Civic",
+    "category": "van",
+    "plate": "4399-C-MA",
+    "pricePerDay": 75.85,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019313",
+    "updatedAt": "2025-11-04T10:07:33.019314"
+  },
+  {
+    "id": 15,
+    "brand": "Kia",
+    "model": "308",
+    "category": "eco",
+    "plate": "9344-A-MA",
+    "pricePerDay": 50.54,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019318",
+    "updatedAt": "2025-11-04T10:07:33.019325"
+  },
+  {
+    "id": 16,
+    "brand": "Volkswagen",
+    "model": "Civic",
+    "category": "eco",
+    "plate": "8041-D-MA",
+    "pricePerDay": 116.53,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019330",
+    "updatedAt": "2025-11-04T10:07:33.019331"
+  },
+  {
+    "id": 17,
+    "brand": "Mercedes",
+    "model": "308",
+    "category": "suv",
+    "plate": "9334-E-MA",
+    "pricePerDay": 50.39,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019337",
+    "updatedAt": "2025-11-04T10:07:33.019339"
+  },
+  {
+    "id": 18,
+    "brand": "Ford",
+    "model": "Civic",
+    "category": "sedan",
+    "plate": "7829-A-MA",
+    "pricePerDay": 58.69,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019348",
+    "updatedAt": "2025-11-04T10:07:33.019350"
+  },
+  {
+    "id": 19,
+    "brand": "Ford",
+    "model": "Civic",
+    "category": "suv",
+    "plate": "2079-A-MA",
+    "pricePerDay": 103.96,
+    "available": true,
+    "createdAt": "2025-11-04T10:07:33.019366",
+    "updatedAt": "2025-11-04T10:07:33.019368"
+  },
+  {
+    "id": 20,
+    "brand": "Ford",
+    "model": "Corolla",
+    "category": "suv",
+    "plate": "6939-D-MA",
+    "pricePerDay": 106.9,
+    "available": false,
+    "createdAt": "2025-11-04T10:07:33.019372",
+    "updatedAt": "2025-11-04T10:07:33.019373"
+  }
+]

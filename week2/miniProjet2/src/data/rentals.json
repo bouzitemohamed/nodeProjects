@@ -1,0 +1,322 @@
+[
+    {
+        "id": 1,
+        "carId": 15,
+        "customer": {
+            "name": "Charlie Black",
+            "email": "user14@example.com"
+        },
+        "from": "2025-10-28",
+        "to": "2025-11-04",
+        "days": 7,
+        "dailyRate": 41.76,
+        "total": 292.32,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019772",
+        "updatedAt": "2025-11-04T10:07:33.019775"
+    },
+    {
+        "id": 2,
+        "carId": 9,
+        "customer": {
+            "name": "John Doe",
+            "email": "user11@example.com"
+        },
+        "from": "2025-10-16",
+        "to": "2025-10-23",
+        "days": 7,
+        "dailyRate": 100.09,
+        "total": 700.63,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019789",
+        "updatedAt": "2025-11-04T10:07:33.019790"
+    },
+    {
+        "id": 3,
+        "carId": 12,
+        "customer": {
+            "name": "John Doe",
+            "email": "user4@example.com"
+        },
+        "from": "2025-10-30",
+        "to": "2025-11-06",
+        "days": 7,
+        "dailyRate": 37.48,
+        "total": 262.36,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019802",
+        "updatedAt": "2025-11-04T10:07:33.019803"
+    },
+    {
+        "id": 4,
+        "carId": 1,
+        "customer": {
+            "name": "David Green",
+            "email": "user19@example.com"
+        },
+        "from": "2025-10-12",
+        "to": "2025-10-14",
+        "days": 2,
+        "dailyRate": 109.79,
+        "total": 219.58,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019816",
+        "updatedAt": "2025-11-04T10:07:33.019817"
+    },
+    {
+        "id": 5,
+        "carId": 2,
+        "customer": {
+            "name": "Ella Young",
+            "email": "user6@example.com"
+        },
+        "from": "2025-10-17",
+        "to": "2025-10-19",
+        "days": 2,
+        "dailyRate": 80.63,
+        "total": 161.26,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019829",
+        "updatedAt": "2025-11-04T10:07:33.019830"
+    },
+    {
+        "id": 6,
+        "carId": 4,
+        "customer": {
+            "name": "Frank Harris",
+            "email": "user4@example.com"
+        },
+        "from": "2025-10-28",
+        "to": "2025-10-31",
+        "days": 3,
+        "dailyRate": 117.36,
+        "total": 352.08,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019842",
+        "updatedAt": "2025-11-04T10:07:33.019844"
+    },
+    {
+        "id": 7,
+        "carId": 6,
+        "customer": {
+            "name": "Alice Brown",
+            "email": "user6@example.com"
+        },
+        "from": "2025-10-17",
+        "to": "2025-10-27",
+        "days": 10,
+        "dailyRate": 59.12,
+        "total": 591.2,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019855",
+        "updatedAt": "2025-11-04T10:07:33.019856"
+    },
+    {
+        "id": 8,
+        "carId": 11,
+        "customer": {
+            "name": "John Doe",
+            "email": "user19@example.com"
+        },
+        "from": "2025-10-23",
+        "to": "2025-10-29",
+        "days": 6,
+        "dailyRate": 35.87,
+        "total": 215.22,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019871",
+        "updatedAt": "2025-11-04T10:07:33.019872"
+    },
+    {
+        "id": 9,
+        "carId": 8,
+        "customer": {
+            "name": "Charlie Black",
+            "email": "user4@example.com"
+        },
+        "from": "2025-10-25",
+        "to": "2025-11-01",
+        "days": 7,
+        "dailyRate": 47.89,
+        "total": 335.23,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019884",
+        "updatedAt": "2025-11-04T10:07:33.019886"
+    },
+    {
+        "id": 10,
+        "carId": 10,
+        "customer": {
+            "name": "John Doe",
+            "email": "user8@example.com"
+        },
+        "from": "2025-11-01",
+        "to": "2025-11-11",
+        "days": 10,
+        "dailyRate": 39.11,
+        "total": 391.1,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019897",
+        "updatedAt": "2025-11-04T10:07:33.019898"
+    },
+    {
+        "id": 11,
+        "carId": 18,
+        "customer": {
+            "name": "John Doe",
+            "email": "user13@example.com"
+        },
+        "from": "2025-10-25",
+        "to": "2025-10-27",
+        "days": 2,
+        "dailyRate": 85.6,
+        "total": 171.2,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019910",
+        "updatedAt": "2025-11-04T10:07:33.019911"
+    },
+    {
+        "id": 12,
+        "carId": 3,
+        "customer": {
+            "name": "Alice Brown",
+            "email": "user11@example.com"
+        },
+        "from": "2025-10-13",
+        "to": "2025-10-22",
+        "days": 9,
+        "dailyRate": 73.85,
+        "total": 664.65,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019922",
+        "updatedAt": "2025-11-04T10:07:33.019923"
+    },
+    {
+        "id": 13,
+        "carId": 13,
+        "customer": {
+            "name": "Ella Young",
+            "email": "user19@example.com"
+        },
+        "from": "2025-10-24",
+        "to": "2025-10-25",
+        "days": 1,
+        "dailyRate": 70.52,
+        "total": 70.52,
+        "status": "active",
+        "createdAt": "2025-11-04T10:07:33.019941",
+        "updatedAt": "2025-11-04T10:07:33.019942"
+    },
+    {
+        "id": 14,
+        "carId": 3,
+        "customer": {
+            "name": "Jane Smith",
+            "email": "user12@example.com"
+        },
+        "from": "2025-10-06",
+        "to": "2025-10-11",
+        "days": 5,
+        "dailyRate": 51.56,
+        "total": 257.8,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.019953",
+        "updatedAt": "2025-11-04T10:07:33.019954"
+    },
+    {
+        "id": 15,
+        "carId": 20,
+        "customer": {
+            "name": "David Green",
+            "email": "user10@example.com"
+        },
+        "from": "2025-10-14",
+        "to": "2025-10-17",
+        "days": 3,
+        "dailyRate": 33.55,
+        "total": 100.65,
+        "status": "active",
+        "createdAt": "2025-11-04T10:07:33.019970",
+        "updatedAt": "2025-11-04T10:07:33.019972"
+    },
+    {
+        "id": 16,
+        "carId": 15,
+        "customer": {
+            "name": "Alice Brown",
+            "email": "user7@example.com"
+        },
+        "from": "2025-10-31",
+        "to": "2025-11-10",
+        "days": 10,
+        "dailyRate": 53.63,
+        "total": 536.3,
+        "status": "returned",
+        "createdAt": "2025-11-04T10:07:33.019990",
+        "updatedAt": "2025-11-04T10:07:33.019991"
+    },
+    {
+        "id": 17,
+        "carId": 17,
+        "customer": {
+            "name": "Frank Harris",
+            "email": "user4@example.com"
+        },
+        "from": "2025-10-18",
+        "to": "2025-10-24",
+        "days": 6,
+        "dailyRate": 64.38,
+        "total": 386.28,
+        "status": "active",
+        "createdAt": "2025-11-04T10:07:33.020002",
+        "updatedAt": "2025-11-04T10:07:33.020003"
+    },
+    {
+        "id": 18,
+        "carId": 10,
+        "customer": {
+            "name": "David Green",
+            "email": "user16@example.com"
+        },
+        "from": "2025-10-05",
+        "to": "2025-10-12",
+        "days": 7,
+        "dailyRate": 58.38,
+        "total": 408.66,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.020014",
+        "updatedAt": "2025-11-04T10:07:33.020016"
+    },
+    {
+        "id": 19,
+        "carId": 19,
+        "customer": {
+            "name": "Jane Smith",
+            "email": "user5@example.com"
+        },
+        "from": "2025-10-11",
+        "to": "2025-10-19",
+        "days": 8,
+        "dailyRate": 89.0,
+        "total": 712.0,
+        "status": "active",
+        "createdAt": "2025-11-04T10:07:33.020027",
+        "updatedAt": "2025-11-04T10:07:33.020031"
+    },
+    {
+        "id": 20,
+        "carId": 18,
+        "customer": {
+            "name": "Bob White",
+            "email": "user9@example.com"
+        },
+        "from": "2025-10-12",
+        "to": "2025-10-13",
+        "days": 1,
+        "dailyRate": 114.85,
+        "total": 114.85,
+        "status": "cancelled",
+        "createdAt": "2025-11-04T10:07:33.020043",
+        "updatedAt": "2025-11-04T10:07:33.020044"
+    }
+]
