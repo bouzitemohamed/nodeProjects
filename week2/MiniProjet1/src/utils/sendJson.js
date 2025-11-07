@@ -22,7 +22,7 @@ function sendJson(res, data = null, codeStatus = 200) {
         message = 'Unknown status';
     }
     res.setHeader('Content-Type', 'application/json');
-
+    //res.setHeader('Connection', 'close');
     return res.status(codeStatus).json({
         message,
         data,

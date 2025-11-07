@@ -1,13 +1,14 @@
-const { config } = require('dotenv');
 const express=require('express');
+const helmet=require('helmet');
+require('dotenv').config();
 const todosRoutes=require('./routes/todos.routes');
 const logger=require('./middlewares/logger');
 const errorHandler=require('./middlewares/errorHandler');
 const app=express();
 app.use(logger);
+app.use(helmet());
 app.use(express.json())
 app.use('/api/todos',todosRoutes);
-require('dotenv').config();
 
 const PORT=process.env.PORT;
 app.use(errorHandler);
