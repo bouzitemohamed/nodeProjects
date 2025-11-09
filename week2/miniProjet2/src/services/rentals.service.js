@@ -1,119 +1,201 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs').promises;
+const path = require('path');
 
-const dataPath = path.join(__dirname, "../data/rentals.json");
-let cache = null;
+const rentalsPath = path.join(__dirname, '../data/rentals.json');
+const carsPath = path.join(__dirname, '../data/cars.json');
 
-// ✅ Load rentals from file (cached)
-function load() {
-  if (!cache) {
-    const raw = fs.readFileSync(dataPath, "utf8");
-    cache = JSON.parse(raw);
+const readRentalsFromFile = async () => {
+  try {
+    const data = await fs.readFile(rentalsPath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
   }
-  return cache;
-}
+};
 
-// ✅ Save cache to file
-function save() {
-  fs.writeFileSync(dataPath, JSON.stringify(cache, null, 2));
-}
-
-// ✅ Get all rentals (with filters & pagination)
-function getAll(query) {
-  let rentals = load();
-  const { status, carId, customerEmail, page = 1, limit = 10, sort } = query;
-
-  // ✅ Filters
-  if (status) rentals = rentals.filter(r => r.status === status);
-  if (carId) rentals = rentals.filter(r => String(r.carId) === String(carId));
-  if (customerEmail) {
-    rentals = rentals.filter(r =>
-      r.customer.email.toLowerCase().includes(customerEmail.toLowerCase())
-    );
+const readCarsFromFile = async () => {
+  try {
+    const data = await fs.readFile(carsPath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
   }
+};
 
-  // ✅ Sorting (asc or desc)
-  if (sort === 'asc') {
-    rentals.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+const writeRentalsToFile = async (rentals) => {
+  await fs.writeFile(rentalsPath, JSON.stringify(rentals, null, 2));
+};
+
+const writeCarsToFile = async (cars) => {
+  await fs.writeFile(carsPath, JSON.stringify(cars, null, 2));
+};
+
+const generateId = (rentals) => {
+  const maxId = rentals.reduce((max, rental) => Math.max(max, parseInt(rental.id) || 0), 0);
+  return (maxId + 1).toString();
+};
+
+// Check if dates overlap
+const overlaps = (aFrom, aTo, bFrom, bTo) => {
+  return aFrom < bTo && bFrom < aTo;
+};
+
+// Calculate days between dates
+const calculateDays = (from, to) => {
+  const fromDate = new Date(from);
+  const toDate = new Date(to);
+  const timeDiff = toDate.getTime() - fromDate.getTime();
+  return Math.max(1, Math.ceil(timeDiff / (1000 * 3600 * 24)));
+};
+
+const getAllRentals = async (filters = {}) => {
+  let rentals = await readRentalsFromFile();
+  
+  const { status, carId } = filters;
+  
+  if (status) rentals = rentals.filter(rental => rental.status === status);
+  if (carId) rentals = rentals.filter(rental => rental.carId === carId);
+  
+  return rentals;
+};
+
+const getRentalById = async (id) => {
+  const rentals = await readRentalsFromFile();
+  return rentals.find(rental => rental.id === id);
+};
+
+const createRental = async (rentalData) => {
+  const rentals = await readRentalsFromFile();
+  const cars = await readCarsFromFile();
+  const now = new Date().toISOString();
+  
+  const car = cars.find(c => c.id === rentalData.carId);
+  if (!car) {
+    throw new Error('Car not found');
   }
-  else if (sort === 'desc') {
-    rentals.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  
+  if (!car.available) {
+    throw new Error('Car is not available for rental');
   }
-
-  // ✅ Pagination
-  const start = (page - 1) * limit;
-  const paginated = rentals.slice(start, start + Number(limit));
-
-  return {
-    total: rentals.length,
-    page: Number(page),
-    limit: Number(limit),
-    data: paginated,
-  };
-}
-
-
-// ✅ Get one rental by ID
-function getOne(id) {
-  const rentals = load();
-  return rentals.find(r => String(r.id) === String(id)) || null;
-}
-
-// ✅ Create a new rental
-function createOne(data) {
-  const rentals = load();
+  
+  // Check for overlapping rentals
+  const overlappingRental = rentals.find(rental => 
+    rental.carId === rentalData.carId && 
+    rental.status === 'active' &&
+    overlaps(
+      new Date(rental.from),
+      new Date(rental.to),
+      new Date(rentalData.from),
+      new Date(rentalData.to)
+    )
+  );
+  
+  if (overlappingRental) {
+    throw new Error('Car is already rented during this period');
+  }
+  
+  const days = calculateDays(rentalData.from, rentalData.to);
+  const total = days * car.pricePerDay;
+  
   const newRental = {
-    id: rentals.length ? rentals[rentals.length - 1].id + 1 : 1,
-    carId: data.carId,
-    customer: {
-      name: data.customer?.name || "Unknown",
-      email: data.customer?.email || "unknown@example.com",
-    },
-    from: data.from,
-    to: data.to,
-    days: data.days,
-    dailyRate: data.dailyRate,
-    total: data.total,
-    status: data.status || "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    id: generateId(rentals),
+    carId: rentalData.carId,
+    customer: rentalData.customer,
+    from: rentalData.from,
+    to: rentalData.to,
+    days: days,
+    dailyRate: car.pricePerDay,
+    total: parseFloat(total.toFixed(2)),
+    status: 'active',
+    createdAt: now,
+    updatedAt: now
   };
+  
+  // Mark car as unavailable
+  car.available = false;
+  car.updatedAt = now;
+  
   rentals.push(newRental);
-  save();
+  await writeRentalsToFile(rentals);
+  await writeCarsToFile(cars);
+  
   return newRental;
-}
+};
 
-// ✅ Update a rental
-function updateOne(id, data) {
-  const rentals = load();
-  const index = rentals.findIndex(r => String(r.id) === String(id));
-  if (index === -1) return null;
-
-  rentals[index] = {
-    ...rentals[index],
-    ...data,
-    updatedAt: new Date().toISOString(),
+const returnRental = async (id) => {
+  const rentals = await readRentalsFromFile();
+  const cars = await readCarsFromFile();
+  const now = new Date().toISOString();
+  
+  const rentalIndex = rentals.findIndex(rental => rental.id === id);
+  if (rentalIndex === -1) return null;
+  
+  const rental = rentals[rentalIndex];
+  if (rental.status !== 'active') {
+    throw new Error('Rental is not active');
+  }
+  
+  // Mark car as available
+  const car = cars.find(c => c.id === rental.carId);
+  if (car) {
+    car.available = true;
+    car.updatedAt = now;
+  }
+  
+  const updatedRental = {
+    ...rental,
+    status: 'returned',
+    updatedAt: now
   };
-  save();
-  return rentals[index];
-}
+  
+  rentals[rentalIndex] = updatedRental;
+  
+  await writeRentalsToFile(rentals);
+  await writeCarsToFile(cars);
+  
+  return updatedRental;
+};
 
-// ✅ Delete a rental
-function deleteOne(id) {
-  const rentals = load();
-  const index = rentals.findIndex(r => String(r.id) === String(id));
-  if (index === -1) return false;
-
-  rentals.splice(index, 1);
-  save();
-  return true;
-}
+const cancelRental = async (id) => {
+  const rentals = await readRentalsFromFile();
+  const cars = await readCarsFromFile();
+  const now = new Date().toISOString();
+  
+  const rentalIndex = rentals.findIndex(rental => rental.id === id);
+  if (rentalIndex === -1) return null;
+  
+  const rental = rentals[rentalIndex];
+  if (rental.status !== 'active') {
+    throw new Error('Only active rentals can be cancelled');
+  }
+  
+  // Mark car as available
+  const car = cars.find(c => c.id === rental.carId);
+  if (car) {
+    car.available = true;
+    car.updatedAt = now;
+  }
+  
+  const updatedRental = {
+    ...rental,
+    status: 'cancelled',
+    updatedAt: now
+  };
+  
+  rentals[rentalIndex] = updatedRental;
+  
+  await writeRentalsToFile(rentals);
+  await writeCarsToFile(cars);
+  
+  return updatedRental;
+};
 
 module.exports = {
-  getAll,
-  getOne,
-  createOne,
-  updateOne,
-  deleteOne,
-  load,
+  getAllRentals,
+  getRentalById,
+  createRental,
+  returnRental,
+  cancelRental
 };

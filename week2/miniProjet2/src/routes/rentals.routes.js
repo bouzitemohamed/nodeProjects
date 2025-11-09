@@ -1,10 +1,12 @@
-const express = require("express");
+const express = require('express');
+const rentalsController = require('../controllers/rentals.controller');
+
 const router = express.Router();
-const rentalsController = require('../controller/rentals.controller');
-router.get("/", rentalsController.getAll);
-router.get("/:id", rentalsController.getOne);
-router.post("/", rentalsController.createOne);
-router.put("/:id", rentalsController.updateOne);
-router.delete("/:id", rentalsController.deleteOne);
+
+router.get('/', rentalsController.getAllRentals);
+router.get('/:id', rentalsController.getRentalById);
+router.post('/', rentalsController.createRental);
+router.put('/:id/return', rentalsController.returnRental);
+router.delete('/:id', rentalsController.cancelRental);
 
 module.exports = router;

@@ -1,100 +1,111 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs').promises;
+const path = require('path');
 
-const dataPath = path.join(__dirname, "../data/cars.json");
-let cache = null;
+const dataPath = path.join(__dirname, '../data/cars.json');
 
-// ✅ Load data (cached)
-function load() {
-  if (!cache) {
-    const raw = fs.readFileSync(dataPath, "utf8");
-    cache = JSON.parse(raw);
+const readCarsFromFile = async () => {
+  try {
+    const data = await fs.readFile(dataPath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
   }
-  return cache;
-}
+};
 
-// ✅ Save data
-function save() {
-  fs.writeFileSync(dataPath, JSON.stringify(cache, null, 2));
-}
+const writeCarsToFile = async (cars) => {
+  await fs.writeFile(dataPath, JSON.stringify(cars, null, 2));
+};
 
-// ✅ Get all cars (with filters and pagination)
-function getAll(query) {
-  let cars = load();
-  const { category, brand, available, page = 1, limit = 10 } = query;
+const generateId = (cars) => {
+  const maxId = cars.reduce((max, car) => Math.max(max, parseInt(car.id) || 0), 0);
+  return (maxId + 1).toString();
+};
 
-  if (category) cars = cars.filter(c => c.category === category);
-  if (brand) cars = cars.filter(c => c.brand.toLowerCase().includes(brand.toLowerCase()));
-  if (available !== undefined)
-    cars = cars.filter(c => String(c.available) === String(available));
+const getAllCars = async (filters = {}) => {
+  let cars = await readCarsFromFile();
+  
+  const { category, available, minPrice, maxPrice, q } = filters;
+  
+  if (category) cars = cars.filter(car => car.category === category);
+  if (available !== undefined) cars = cars.filter(car => car.available === (available === 'true'));
+  if (minPrice) cars = cars.filter(car => car.pricePerDay >= parseFloat(minPrice));
+  if (maxPrice) cars = cars.filter(car => car.pricePerDay <= parseFloat(maxPrice));
+  if (q) {
+    const searchTerm = q.toLowerCase();
+    cars = cars.filter(car => 
+      car.plate.toLowerCase().includes(searchTerm) || 
+      car.model.toLowerCase().includes(searchTerm)
+    );
+  }
+  
+  return cars;
+};
 
-  const start = (page - 1) * limit;
-  const paginated = cars.slice(start, start + Number(limit));
+const getCarById = async (id) => {
+  const cars = await readCarsFromFile();
+  return cars.find(car => car.id === id);
+};
 
-  return {
-    total: cars.length,
-    page: Number(page),
-    limit: Number(limit),
-    data: paginated,
-  };
-}
-
-// ✅ Get one car
-function getOne(id) {
-  const cars = load();
-  return cars.find(c => String(c.id) === String(id)) || null;
-}
-
-// ✅ Create a new car
-function createOne(data) {
-  const cars = load();
+const createCar = async (carData) => {
+  const cars = await readCarsFromFile();
+  const now = new Date().toISOString();
+  
+  // Check if plate already exists
+  const existingCar = cars.find(car => car.plate === carData.plate);
+  if (existingCar) {
+    throw new Error('Car with this plate already exists');
+  }
+  
   const newCar = {
-    id: cars.length ? cars[cars.length - 1].id + 1 : 1,
-    brand: data.brand,
-    model: data.model,
-    category: data.category,
-    plate: data.plate,
-    pricePerDay: data.pricePerDay,
-    available: data.available ?? true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    id: generateId(cars),
+    brand: carData.brand,
+    model: carData.model,
+    category: carData.category,
+    plate: carData.plate,
+    pricePerDay: parseFloat(carData.pricePerDay),
+    available: true,
+    createdAt: now,
+    updatedAt: now
   };
+  
   cars.push(newCar);
-  save();
+  await writeCarsToFile(cars);
   return newCar;
-}
+};
 
-// ✅ Update a car
-function updateOne(id, data) {
-  const cars = load();
-  const index = cars.findIndex(c => String(c.id) === String(id));
-  if (index === -1) return null;
-
-  cars[index] = {
-    ...cars[index],
-    ...data,
-    updatedAt: new Date().toISOString(),
+const updateCar = async (id, updateData) => {
+  const cars = await readCarsFromFile();
+  const carIndex = cars.findIndex(car => car.id === id);
+  
+  if (carIndex === -1) return null;
+  
+  const updatedCar = { 
+    ...cars[carIndex],
+    ...updateData,
+    updatedAt: new Date().toISOString()
   };
-  save();
-  return cars[index];
-}
+  
+  cars[carIndex] = updatedCar;
+  await writeCarsToFile(cars);
+  return updatedCar;
+};
 
-// ✅ Delete a car
-function deleteOne(id) {
-  const cars = load();
-  const index = cars.findIndex(c => String(c.id) === String(id));
-  if (index === -1) return false;
-
-  cars.splice(index, 1);
-  save();
+const deleteCar = async (id) => {
+  const cars = await readCarsFromFile();
+  const carIndex = cars.findIndex(car => car.id === id);
+  
+  if (carIndex === -1) return false;
+  
+  cars.splice(carIndex, 1);
+  await writeCarsToFile(cars);
   return true;
-}
+};
 
 module.exports = {
-  getAll,
-  getOne,
-  createOne,
-  updateOne,
-  deleteOne,
-  load,
+  getAllCars,
+  getCarById,
+  createCar,
+  updateCar,
+  deleteCar
 };

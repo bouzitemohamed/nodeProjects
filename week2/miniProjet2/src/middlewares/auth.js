@@ -1,9 +1,16 @@
 function auth(req, res, next) {
-  const token = req.headers.authorization;
-  if (token === process.env.TOKEN_SECRET) {
-    return next();
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  
+  if (!token || token !== process.env.API_TOKEN) {
+    return res.status(401).json({
+      status: 'error',
+      message: 'Unauthorized - Invalid or missing token',
+      code: 401,
+      timestamp: new Date().toISOString()
+    });
   }
-  res.status(401).json({ message: "Unauthorized: Invalid or missing token" });
+  
+  next();
 }
 
 module.exports = auth;
