@@ -7,9 +7,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1d';
 
 function generateToken(user) {
-  // On ne met que le minimum d'informations dans le token
   const payload = {
-    sub: user._id.toString(), // "subject" du token : l'identité principale
+    sub: user._id.toString(),
     role: user.role,
   };
 

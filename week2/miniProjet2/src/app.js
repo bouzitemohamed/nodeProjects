@@ -6,6 +6,7 @@ const loggerMidleware=require('./middlewares/logger');
 const authRoutes=require("./routes/auth.routes");
 const handelError=require('./middlewares/handelError');
 const app=express();
+app.use(express.static('public')); 
 app.use(morgan('dev'));
 app.use(express.json());
 //app.use(loggerMidleware);

@@ -207,5 +207,12 @@
     "available": false,
     "createdAt": "2025-11-04T10:07:33.019372",
     "updatedAt": "2025-11-04T10:07:33.019373"
+  },
+  {
+    "id": 21,
+    "category": "Électronique",
+    "available": true,
+    "createdAt": "2025-11-07T13:32:19.247Z",
+    "updatedAt": "2025-11-07T13:32:19.248Z"
   }
 ]

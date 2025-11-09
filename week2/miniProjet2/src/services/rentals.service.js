@@ -21,15 +21,26 @@ function save() {
 // ✅ Get all rentals (with filters & pagination)
 function getAll(query) {
   let rentals = load();
-  const { status, carId, customerEmail, page = 1, limit = 10 } = query;
+  const { status, carId, customerEmail, page = 1, limit = 10, sort } = query;
 
+  // ✅ Filters
   if (status) rentals = rentals.filter(r => r.status === status);
   if (carId) rentals = rentals.filter(r => String(r.carId) === String(carId));
-  if (customerEmail)
+  if (customerEmail) {
     rentals = rentals.filter(r =>
       r.customer.email.toLowerCase().includes(customerEmail.toLowerCase())
     );
+  }
 
+  // ✅ Sorting (asc or desc)
+  if (sort === 'asc') {
+    rentals.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  }
+  else if (sort === 'desc') {
+    rentals.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+
+  // ✅ Pagination
   const start = (page - 1) * limit;
   const paginated = rentals.slice(start, start + Number(limit));
 
@@ -40,6 +51,7 @@ function getAll(query) {
     data: paginated,
   };
 }
+
 
 // ✅ Get one rental by ID
 function getOne(id) {
